@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('favicon.ico') }}" rel="icon"/>
+    </head>
+
+    <body>
+        <header>
+            <nav>
+                <a href="{{ path('index') }}">Home</a> |
+                <a href="{{ path('session') }}">Session</a> |
+                <a href="{{ path('game21') }}">Game 21</a> |
+            </nav>
+        </header>
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer>
+            <p>Developed by Jenny Phan (<a href="https://github.com/kimchijeon/mvc_framework/tree/main/app">kimchijeon</a>) 2021</p>
+        </footer>
+
+    </body>
+</html>
+        
