@@ -25,6 +25,24 @@ nav {
     padding: 1em;
 }
 
+.total-dice-result {
+    padding: 20px;
+    background-color: grey;
+    border-radius: 5px;
+    width: 50%;
+}
+
+.array-dice {
+    background-color: white;
+    border-bottom: 1px solid black;
+    padding: 6px;
+    padding-left: 15px;
+    display: flex;
+    font-size: 1.5em;
+    box-shadow: 5px 5px black;
+}
+
+.array-dice .dot::after { content: "\25CF"; margin-left: 1px; }
 /**
 * Style a dice using UTF-8 characters.
 */
@@ -36,9 +54,13 @@ nav {
 .dice-utf8 .dice-6::after { content: "\2685"; }
 
 .dice-utf8 {
-    font-size: 32px;
+    display: flex;
+    font-size: 2em;
 }
 
+form input[type=number] {
+    width: 15em;
+}
 
 table {
     border-collapse: collapse;
@@ -75,6 +97,35 @@ tr:hover {
 .highscore td:first-child:before {
     counter-increment: rowNumber;
     content: counter(rowNumber);
+}
+
+/* Bet results */
+.bet {
+    position: relative;
+    display: flex;
+}
+
+.coin-bag,
+.bot-coin-bag {
+    background-image: url("../img/coins.png");
+    width: 74px;
+    height: 100px;
+}
+
+.coin-bag p {
+    position: absolute;
+    top: 60%;
+    left: 3%;
+}
+
+.bot-coin-bag p {
+    position: absolute;
+    top: 60%;
+    left: 21%;
+}
+
+.player-coins {
+    margin-right: 2em;
 }
 
 footer {
