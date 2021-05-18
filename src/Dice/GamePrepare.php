@@ -59,8 +59,22 @@ class GamePrepare
         if (isset($bottotal)) {
             $session->set("bottotal", null);
         }
+    }
 
-        $session->set("playercoins", 10);
-        $session->set("botcoins", 100);
+    public function saveRoundDices(Request $request): void
+    {
+        $session = $request->getSession();
+
+        $rounddices = $session->get("rounddices");
+        $saveddices = $session->get("saveddices");
+
+        if (!isset($saveddices)) {
+            $session->set("saveddices", $rounddices);
+            $session->set("rounddices", null);
+        } elseif (isset($saveddices) && isset($rounddices)) {
+            $merge = array_merge($saveddices, $rounddices);
+            $session->set("saveddices", $merge);
+            $session->set("rounddices", null);
+        }
     }
 }

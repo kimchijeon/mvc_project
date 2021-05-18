@@ -5,19 +5,19 @@ declare(strict_types=1);
 namespace App\Functions;
 
 /**
- * Function to calculate sum of each dice value in Yatzy
+ * Function to create an array for each dice number in saveddices
  *
- * @return int
+ * @return array
  */
-function sumDiceValue(array $saveddices, int $number): int
+function arrayDiceNumbers(array $saveddices, int $number): array
 {
-    $count = array_keys($saveddices, $number);
+    $findkeys = array_keys($saveddices, $number);
 
-    $sum = 0;
+    $histogram = array();
 
-    foreach ($count as $key) {
-        $sum += $saveddices[$key];
+    foreach ($findkeys as $key) {
+        array_push($histogram, $saveddices[$key]);
     }
 
-    return $sum;
+    return $histogram;
 }
