@@ -7,11 +7,40 @@
 
 <p>{{ message }}</p>
 
+<h2>Round summary</h2>
+<p>You rolled these dices:</p>
+<div class="dice-utf8">
+    {% for value in getRoundDices %}
+    <div class="dice-{{ value }}"></div>
+    {% endfor %}
+</div>
 <p>Your total: <b>{{ getPlayerTotal }}</b></p>
+<p>Average roll: <b>{{ averageRoundDices }}</b></p>
+
+<h2>Bet your coins</h2>
+<div class="bet">
+    <div class="player-coins">
+        <p>You now have</p>
+        <div class="coin-bag">
+            <p><b>{{ getPlayerCoins }}</b></p>
+        </div>
+    </div>
+    <div class="bot-coins">
+        <p>Bot now has</p>
+        <div class="bot-coin-bag">
+            <p><b>{{ getBotCoins }}</b></p>
+        </div>
+    </div>
+</div>
 
 <p>
     <form method="post" action="{{ path('game21_bot_play') }}">
+        <label>Place your bets!</label>
+        <input type="number" name="bet" max="{{ getPlayerCoins / 2 }}" placeholder="Max 50% of your balance">
         <input type="submit" name="submit" value="Let bot play">
     </form>
+</p>
+<p>
+    <button><a href="{{ path('game21') }}">Restart</a></button>
 </p>
 {% endblock %}

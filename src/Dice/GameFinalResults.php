@@ -60,6 +60,36 @@ class GameFinalResults
         return $data;
     }
 
+    public function showBettingResults(Request $request): array
+    {
+        $session = $request->getSession();
+
+        $playercoins = $session->get("playercoins");
+        $botcoins = $session->get("botcoins");
+        $playerbet = $session->get("playerbet");
+
+        if ($this->message == "You win!") {
+            $playercoins = $playercoins + $playerbet;
+            $session->set("playercoins", $playercoins);
+
+            $botcoins = $botcoins - $playerbet;
+            $session->set("botcoins", $botcoins);
+        } elseif ($this->message == "Bot wins!") {
+            $playercoins = $playercoins - $playerbet;
+            $session->set("playercoins", $playercoins);
+
+            $botcoins = $botcoins + $playerbet;
+            $session->set("botcoins", $botcoins);
+        }
+
+        if (isset($playercoins) && isset($botcoins)) {
+            $data["getPlayerCoins"] = $playercoins;
+            $data["getBotCoins"] = $botcoins;
+        }
+
+        return $data;
+    }
+
     public function showScoreboard(Request $request): array
     {
         $session = $request->getSession();
