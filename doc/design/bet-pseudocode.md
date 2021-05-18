@@ -1,10 +1,12 @@
 Pseudo code Game 21 betting
 ====================
 
-## Setup at start of round
-Set session variable `playercoins` to `10`.
+## Setup before bot game
+If `playercoins` is empty
 
-Set session variable `botcoins` to `100`.
+    Set session variable `playercoins` to `10`.
+
+    Set session variable `botcoins` to `100`.
 
 ## Placing a bet
 Player inputs number of coins to bet in a POST-form,
