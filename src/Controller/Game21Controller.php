@@ -10,6 +10,7 @@ use App\Dice\Game;
 use App\Dice\GamePrepare;
 use App\Dice\GameResults;
 use App\Dice\GameFinalResults;
+use App\Dice\GameHighscore;
 
 
 class Game21Controller extends AbstractController
@@ -26,6 +27,7 @@ class Game21Controller extends AbstractController
 
         $callable = new GamePrepare();
         $callable->prepareGame($request);
+        $callable->saveRoundDices($request);
 
         return $this->render('game21/index.html.twig', $data);
     }
@@ -59,6 +61,7 @@ class Game21Controller extends AbstractController
     {
         $callable = new Game();
         $callable->playGame($request);
+        $callable->setRoundDices($request);
 
         return $this->redirectToRoute('game21_game');
     }
@@ -92,6 +95,7 @@ class Game21Controller extends AbstractController
     {
         $callable = new Game();
         $callable->botRoll($request);
+        $callable->prepareBet($request);
 
         return $this->redirectToRoute('game21_result');
     }
@@ -105,10 +109,23 @@ class Game21Controller extends AbstractController
         $totals = $callable->setTotals($request);
         $results = $callable->showFinalResults($request);
         $scoreboard = $callable->showScoreboard($request);
+        $bets = $callable->showBettingresults($request);
 
-        $data = $totals + $results + $scoreboard;
+        $data = $totals + $results + $scoreboard + $bets;
 
         return $this->render('game21/result.html.twig', $data);
+    }
+
+    /**
+     * @Route("/game21/highscore", name="game21_highscore")
+    */
+    public function highscore(Request $request): Response
+    {
+        $callable = new GameHighscore();
+        $histogram = $callable->printHistogram($request);
+
+        $data = $histogram;
+        return $this->render('game21/highscore.html.twig', $data);
     }
 
     /**

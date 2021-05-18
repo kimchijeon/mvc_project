@@ -42,6 +42,21 @@ class Game
         $session->set("dicetotal", $dicetotal);
     }
 
+    public function setRoundDices(request $request): void
+    {
+        $session = $request->getSession();
+
+        $dicehand = $session->get("dicehand");
+        $rounddices = $session->get("rounddices");
+
+        if (!isset($rounddices)) {
+            $session->set("rounddices", $dicehand);
+        } elseif (isset($rounddices)) {
+            $merge = array_merge($rounddices, $dicehand);
+            $session->set("rounddices", $merge);
+        }
+    }
+
     public function savePlayerTotal(Request $request): void
     {
         $session = $request->getSession();
@@ -51,6 +66,13 @@ class Game
 
         if (isset($submit)) {
             $session->set("playertotal", (int)$playerdice);
+        }
+
+        $playercoins = $session->get("playercoins");
+
+        if (!isset($playercoins)) {
+            $session->set("playercoins", 10);
+            $session->set("botcoins", 100);
         }
     }
 
@@ -69,7 +91,37 @@ class Game
             $data["getPlayerTotal"] = $playertotal;
         }
 
+        $playercoins = $session->get("playercoins");
+        $botcoins = $session->get("botcoins");
+
+        if (isset($playercoins) && isset($botcoins)) {
+            $data["getPlayerCoins"] = $playercoins;
+            $data["getBotCoins"] = $botcoins;
+        }
+
+        $rounddices = $session->get("rounddices");
+        if (isset($rounddices)) {
+            $data["getRoundDices"] = $rounddices;
+        }
+
+        $count = count($rounddices);
+        $average = round(array_sum($rounddices) / $count, 2);
+
+        $data["averageRoundDices"] = $average;
+
         return $data;
+    }
+
+    public function prepareBet(Request $request): void
+    {
+        $session = $request->getSession();
+
+        $submit = $request->request->get("submit");
+        $playerbet = $request->request->get("bet");
+
+        if (isset($submit)) {
+            $session->set("playerbet", $playerbet);
+        }
     }
 
     public function botRoll(Request $request): void
