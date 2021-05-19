@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Dice;
 
-use App\Dice\Dice;
-use App\Dice\Dicehand;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
 
