@@ -20,7 +20,7 @@ class Highscore
     /**
      * @ORM\Column(type="integer")
      */
-    private $rounds;
+    private $round_total;
 
     /**
      * @ORM\Column(type="string", length=10)
@@ -30,36 +30,41 @@ class Highscore
     /**
      * @ORM\Column(type="integer")
      */
-    private $wins;
+    private $win;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $losses;
+    private $loss;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $player_coins;
+    private $player_coin;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $bot_coins;
+    private $bot_coin;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $dice_total;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getRounds(): ?int
+    public function getRoundTotal(): ?int
     {
-        return $this->rounds;
+        return $this->round_total;
     }
 
-    public function setRounds(int $rounds): self
+    public function setRoundTotal(int $round_total): self
     {
-        $this->rounds = $rounds;
+        $this->round_total = $round_total;
 
         return $this;
     }
@@ -76,50 +81,62 @@ class Highscore
         return $this;
     }
 
-    public function getWins(): ?int
+    public function getWin(): ?int
     {
-        return $this->wins;
+        return $this->win;
     }
 
-    public function setWins(int $wins): self
+    public function setWin(int $win): self
     {
-        $this->wins = $wins;
+        $this->win = $win;
 
         return $this;
     }
 
-    public function getLosses(): ?int
+    public function getLoss(): ?int
     {
-        return $this->losses;
+        return $this->loss;
     }
 
-    public function setLosses(int $losses): self
+    public function setLoss(int $loss): self
     {
-        $this->losses = $losses;
+        $this->loss = $loss;
 
         return $this;
     }
 
-    public function getPlayerCoins(): ?int
+    public function getPlayerCoin(): ?int
     {
-        return $this->player_coins;
+        return $this->player_coin;
     }
 
-    public function setPlayerCoins(int $player_coins): self
+    public function setPlayerCoin(int $player_coin): self
     {
-        $this->player_coins = $player_coins;
+        $this->player_coin = $player_coin;
 
         return $this;
     }
 
-    public function getBotCoins(): ?int
+    public function getBotCoin(): ?int
     {
-        return $this->bot_coins;
+        return $this->bot_coin;
     }
 
-    public function setBotCoins(int $bot_coins): self
+    public function setBotCoin(int $bot_coin): self
     {
-        $this->bot_coins = $bot_coins;
+        $this->bot_coin = $bot_coin;
+
+        return $this;
+    }
+
+    public function getDiceTotal(): ?int
+    {
+        return $this->dice_total;
+    }
+
+    public function setDiceTotal(int $dice_total): self
+    {
+        $this->dice_total = $dice_total;
 
         return $this;
     }

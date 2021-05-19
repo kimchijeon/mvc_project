@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Game 21{% endblock %}
+
+{% block content %}
+<h1>Highscore</h1>
+<table>
+    <tr>
+        <th>Username</th>
+        <th>Rounds played</th>
+        <th>Wins</th>
+        <th>Losses</th>
+        <th>Player coins</th>
+        <th>Bot coins</th>
+    </tr>
+    {% for row in getPlayerStats %}
+    <tr>
+        <td>{{ row.username }}</td>
+        <td>{{ row.roundtotal }}</td>
+        <td>{{ row.win }}</td>
+        <td>{{ row.loss }}</td>
+        <td>{{ row.playercoins }}</td>
+        <td>{{ row.botcoins }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<p>
+    <button><a href="{{ path('highscore') }}">Back</a></button>
+</p>
+<p>
+    <button><a href="{{ path('game21_restart') }}">Start new game</a></button>
+</p>
+{% endblock %}

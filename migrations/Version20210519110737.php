@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20210517134734 extends AbstractMigration
+final class Version20210519110737 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,7 +20,7 @@ final class Version20210517134734 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE highscore (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, rounds INTEGER NOT NULL, name VARCHAR(10) NOT NULL, wins INTEGER NOT NULL, losses INTEGER NOT NULL, player_coins INTEGER NOT NULL, bot_coins INTEGER NOT NULL)');
+        $this->addSql('CREATE TABLE highscore (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, round_total INTEGER NOT NULL, name VARCHAR(10) NOT NULL, win INTEGER NOT NULL, loss INTEGER NOT NULL, player_coin INTEGER NOT NULL, bot_coin INTEGER NOT NULL, dice_total INTEGER NOT NULL)');
     }
 
     public function down(Schema $schema): void

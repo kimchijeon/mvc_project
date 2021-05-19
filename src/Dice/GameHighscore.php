@@ -4,30 +4,97 @@ declare(strict_types=1);
 
 namespace App\Dice;
 
-use App\Dice\Dice;
-use App\Dice\Dicehand;
+use App\Entity\Highscore;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
-use function App\Functions\arrayDiceNumbers;
 
 /**
  * Class GameHighscore as a controller class
  */
 class GameHighscore
 {
-    public function printHistogram(Request $request): array
+    public function processHighscore(EntityManagerInterface $entityManager, Request $request): void
     {
-        $session = $request->getSession();
+        $rounds = $request->request->get("rounds");
+        $name = $request->request->get("name");
+        $wins = $request->request->get("wins");
+        $losses = $request->request->get("losses");
+        $playercoins = $request->request->get("playercoins");
+        $botcoins = $request->request->get("botcoins");
+        $dicetotal = $request->request->get("dicetotal");
 
-        $saveddices = $session->get("saveddices") ?? [0];
+        $highscore = new Highscore();
+        $highscore->setRoundTotal((int)$rounds);
+        $highscore->setName($name);
+        $highscore->setWin((int)$wins);
+        $highscore->setLoss((int)$losses);
+        $highscore->setPlayerCoin((int)$playercoins);
+        $highscore->setBotCoin((int)$botcoins);
+        $highscore->setDiceTotal((int)$dicetotal);
 
-        $data["getOnes"] = arrayDiceNumbers($saveddices, 1);
-        $data["getTwos"] = arrayDiceNumbers($saveddices, 2);
-        $data["getThrees"] = arrayDiceNumbers($saveddices, 3);
-        $data["getFours"] = arrayDiceNumbers($saveddices, 4);
-        $data["getFives"] = arrayDiceNumbers($saveddices, 5);
-        $data["getSixes"] = arrayDiceNumbers($saveddices, 6);
+        $entityManager->persist($highscore);
+
+        $entityManager->flush();
+    }
+
+    public function showHighscoreTable(EntityManagerInterface $entityManager): array
+    {
+        $data = array();
+
+        $query = $entityManager->createQuery(
+            'SELECT
+                h.name,
+                h.win,
+                h.player_coin
+            FROM App\Entity\Highscore h 
+            ORDER BY h.win DESC'
+            );
+
+        $data["highscore"] = $query->getResult();
 
         return $data;
     }
+
+    public function showOverallStats(EntityManagerInterface $entityManager): array
+    {
+        $data = array();
+
+        $query = $entityManager->createQuery(
+            'SELECT 
+                sum(h.round_total) AS roundtotal,
+                sum(h.dice_total) AS dicetotal,
+                sum(h.loss) as losstotal,
+                sum(h.win) as wintotal
+            FROM App\Entity\Highscore h'
+        );
+
+        
+        $data["getOverallStats"] = $query->getResult();
+
+        return $data;
+    }
+
+    public function showPlayerStats(EntityManagerInterface $entityManager, string $name): array
+    {
+        $data = array();
+
+        $query = $entityManager->createQuery(
+            'SELECT 
+                h.round_total AS roundtotal,
+                h.name AS username,
+                h.win AS win,
+                h.loss AS loss,
+                h.player_coin AS playercoins,
+                h.bot_coin AS botcoins
+            FROM App\Entity\Highscore h
+            WHERE h.name = :name'
+        )->setParameter('name', $name);
+
+        
+        $data["getPlayerStats"] = $query->getResult();
+
+        return $data;
+    }
+
 }
