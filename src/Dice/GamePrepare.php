@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Dice;
 
-use App\Dice\Dice;
-use App\Dice\Dicehand;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -59,6 +57,11 @@ class GamePrepare
         if (isset($bottotal)) {
             $session->set("bottotal", null);
         }
+
+        $rounddices = $session->get("rounddices");
+        if (isset($rounddices)) {
+            $session->set("rounddices", null);
+        }
     }
 
     public function saveRoundDices(Request $request): void
@@ -70,11 +73,10 @@ class GamePrepare
 
         if (!isset($saveddices)) {
             $session->set("saveddices", $rounddices);
-            $session->set("rounddices", null);
+
         } elseif (isset($saveddices) && isset($rounddices)) {
             $merge = array_merge($saveddices, $rounddices);
             $session->set("saveddices", $merge);
-            $session->set("rounddices", null);
         }
     }
 }
