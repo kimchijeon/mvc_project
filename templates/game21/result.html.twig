@@ -32,10 +32,67 @@
 <p>You have won {{ getWins }} times.</p>
 <p>Bot has won {{ getLosses }} times.</p>
 
+<h2>Which numbers did you roll?</h2>
+
+<div class="histogram">
+    <div class="histogram-row">1:
+        {% for value in getOnes %}
+        <div class="dot"></div>
+        {% endfor %}
+    </div>
+    
+    <div class="histogram-row">2: 
+        {% for value in getTwos %}
+        <div class="dot"></div>
+        {% endfor %}
+    </div>
+    
+    <div class="histogram-row">3:
+        {% for value in getThrees %}
+        <div class="dot"></div>
+        {% endfor %}
+    </div>
+    
+    <div class="histogram-row">4:
+        {% for value in getFours %}
+        <div class="dot"></div>
+        {% endfor %}
+    </div>
+    
+    <div class="histogram-row">5:
+        {% for value in getFives %}
+        <div class="dot"></div>
+        {% endfor %}
+    </div>
+    
+    <div class="histogram-row">6:
+        {% for value in getSixes %}
+        <div class="dot"></div>
+        {% endfor %}
+    </div>
+</div>
+
+<p>Total number of dices rolled: <b>{{ getDiceTotal }}</b></p>
+
 <p>
     <button><a href="{{ path('game21') }}">Play another round</a></button>
 </p>
 <p>
     <button><a href="{{ path('game21_restart') }}">Reset scoreboard</a></button>
 </p>
+<h2>End and save your highscore</h2>
+<p>
+    <form method="post" action="{{ path('highscore_process') }}">
+        <label>Enter username:</label>
+        <input type="text" name="name" maxlength="10" placeholder="Max 10 char">
+        <input type="hidden" name="rounds" value="{{ getWins + getLosses }}">
+        <input type="hidden" name="wins" value="{{ getWins }}">
+        <input type="hidden" name="losses" value="{{ getLosses }}">
+        <input type="hidden" name="playercoins" value="{{ getPlayerCoins }}">
+        <input type="hidden" name="botcoins" value="{{ getBotCoins }}">
+        <input type="hidden" name="dicetotal" value="{{ getDiceTotal }}">
+        <input type="submit" name="submit" value="Save">
+    </form>
+</p>
+
 {% endblock %}
