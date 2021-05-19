@@ -3,53 +3,47 @@
 {% block title %}Game 21{% endblock %}
 
 {% block content %}
-<h1>Game stats</h1>
+<h1>Highscore</h1>
+<p>Click username to see complete player stats!</p>
+<table class="highscore">
+    <tr>
+        <th>Rank</th>
+        <th>Wins</th>
+        <th>Username</th>
+        <th>Player coins</th>
+    </tr>
+    {% for row in highscore %}
+    <tr>
+        <td></td>
+        <td>{{ row.win }}</td>
+        <td><a href="{{ path('highscore_player', {'name': row.name}) }}">{{ row.name }}</a></td>
+        <td>{{ row.player_coin }}</td>
+    </tr>
+    {% endfor %}
+</table>
 
-<h2>Total number of each dice last game</h2>
+<h2>Game stats of all time</h2>
+{% for row in getOverallStats %}
+    <p>Total rounds played: {{ row.roundtotal }}</p>
+{% endfor %}
+{% for row in getOverallStats %}
+    <p>Total number of dice rolled: {{ row.dicetotal }}</p>
+{% endfor %}
 
-<div class="total-dice-result">
-    <div class="array-dice">1:
-        {% for value in getOnes %}
-        <div class="dot"></div>
+<div class="histogram">
+    <div class="histogram-row">Player wins:
+        {% for row in getOverallStats %}
+            {{ row.wintotal }}
         {% endfor %}
     </div>
     
-    <div class="array-dice">2: 
-        {% for value in getTwos %}
-        <div class="dot"></div>
-        {% endfor %}
-    </div>
-    
-    <div class="array-dice">3:
-        {% for value in getThrees %}
-        <div class="dot"></div>
-        {% endfor %}
-    </div>
-    
-    <div class="array-dice">4:
-        {% for value in getFours %}
-        <div class="dot"></div>
-        {% endfor %}
-    </div>
-    
-    <div class="array-dice">5:
-        {% for value in getFives %}
-        <div class="dot"></div>
-        {% endfor %}
-    </div>
-    
-    <div class="array-dice">6:
-        {% for value in getSixes %}
-        <div class="dot"></div>
+    <div class="histogram-row">Bot wins: 
+        {% for row in getOverallStats %}
+            {{ row.losstotal }}
         {% endfor %}
     </div>
 </div>
 
-<h2>Highscore</h2>
-<p>Highscore table here</p>
-
-<h2>Game stats over time</h2>
-<p>Fun game stats here</p>
 <p>
     <button><a href="{{ path('game21_restart') }}">Start new game</a></button>
 </p>
