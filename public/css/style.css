@@ -10,7 +10,8 @@ body {
     background-color: rgb(236, 250, 255);
 }
 
-h1 {
+h1,
+h2 {
     font-family: 'Sigmar One', cursive;
 }
 
@@ -25,14 +26,14 @@ nav {
     padding: 1em;
 }
 
-.total-dice-result {
+.histogram {
     padding: 20px;
     background-color: grey;
     border-radius: 5px;
     width: 50%;
 }
 
-.array-dice {
+.histogram-row {
     background-color: white;
     border-bottom: 1px solid black;
     padding: 6px;
@@ -42,7 +43,7 @@ nav {
     box-shadow: 5px 5px black;
 }
 
-.array-dice .dot::after { content: "\25CF"; margin-left: 1px; }
+.histogram-row .dot::after { content: "\25CF"; margin-left: 1px; }
 /**
 * Style a dice using UTF-8 characters.
 */
@@ -66,6 +67,7 @@ table {
     border-collapse: collapse;
     font-size: 0.9em;
     min-width: 500px;
+    text-align: center;
 }
 
 th {
