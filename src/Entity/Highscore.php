@@ -20,7 +20,7 @@ class Highscore
     /**
      * @ORM\Column(type="integer")
      */
-    private $round_total;
+    private $roundTotal;
 
     /**
      * @ORM\Column(type="string", length=10)
@@ -40,17 +40,17 @@ class Highscore
     /**
      * @ORM\Column(type="integer")
      */
-    private $player_coin;
+    private $playerCoin;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $bot_coin;
+    private $botCoin;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $dice_total;
+    private $diceTotal;
 
     public function getId(): ?int
     {
@@ -59,12 +59,12 @@ class Highscore
 
     public function getRoundTotal(): ?int
     {
-        return $this->round_total;
+        return $this->roundTotal;
     }
 
-    public function setRoundTotal(int $round_total): self
+    public function setRoundTotal(int $roundTotal): self
     {
-        $this->round_total = $round_total;
+        $this->roundTotal = $roundTotal;
 
         return $this;
     }
@@ -107,36 +107,36 @@ class Highscore
 
     public function getPlayerCoin(): ?int
     {
-        return $this->player_coin;
+        return $this->playerCoin;
     }
 
-    public function setPlayerCoin(int $player_coin): self
+    public function setPlayerCoin(int $playerCoin): self
     {
-        $this->player_coin = $player_coin;
+        $this->playerCoin = $playerCoin;
 
         return $this;
     }
 
     public function getBotCoin(): ?int
     {
-        return $this->bot_coin;
+        return $this->botCoin;
     }
 
-    public function setBotCoin(int $bot_coin): self
+    public function setBotCoin(int $botCoin): self
     {
-        $this->bot_coin = $bot_coin;
+        $this->botCoin = $botCoin;
 
         return $this;
     }
 
     public function getDiceTotal(): ?int
     {
-        return $this->dice_total;
+        return $this->diceTotal;
     }
 
-    public function setDiceTotal(int $dice_total): self
+    public function setDiceTotal(int $diceTotal): self
     {
-        $this->dice_total = $dice_total;
+        $this->diceTotal = $diceTotal;
 
         return $this;
     }

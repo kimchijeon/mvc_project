@@ -20,7 +20,7 @@ final class Version20210519110737 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE highscore (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, round_total INTEGER NOT NULL, name VARCHAR(10) NOT NULL, win INTEGER NOT NULL, loss INTEGER NOT NULL, player_coin INTEGER NOT NULL, bot_coin INTEGER NOT NULL, dice_total INTEGER NOT NULL)');
+        $this->addSql('CREATE TABLE highscore (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, roundTotal INTEGER NOT NULL, name VARCHAR(10) NOT NULL, win INTEGER NOT NULL, loss INTEGER NOT NULL, playerCoin INTEGER NOT NULL, botCoin INTEGER NOT NULL, diceTotal INTEGER NOT NULL)');
     }
 
     public function down(Schema $schema): void

@@ -46,10 +46,10 @@ class GameHighscore
             'SELECT
                 h.name,
                 h.win,
-                h.player_coin
+                h.playerCoin
             FROM App\Entity\Highscore h 
-            ORDER BY h.win DESC'
-            );
+            ORDER BY h.playerCoin DESC'
+        );
 
         $data["highscore"] = $query->getResult();
 
@@ -62,14 +62,13 @@ class GameHighscore
 
         $query = $entityManager->createQuery(
             'SELECT 
-                sum(h.round_total) AS roundtotal,
-                sum(h.dice_total) AS dicetotal,
+                sum(h.roundTotal) AS roundtotal,
+                sum(h.diceTotal) AS dicetotal,
                 sum(h.loss) as losstotal,
                 sum(h.win) as wintotal
             FROM App\Entity\Highscore h'
         );
 
-        
         $data["getOverallStats"] = $query->getResult();
 
         return $data;
@@ -81,20 +80,18 @@ class GameHighscore
 
         $query = $entityManager->createQuery(
             'SELECT 
-                h.round_total AS roundtotal,
+                h.roundTotal AS roundtotal,
                 h.name AS username,
                 h.win AS win,
                 h.loss AS loss,
-                h.player_coin AS playercoins,
-                h.bot_coin AS botcoins
+                h.playerCoin AS playercoins,
+                h.botCoin AS botcoins
             FROM App\Entity\Highscore h
             WHERE h.name = :name'
         )->setParameter('name', $name);
 
-        
         $data["getPlayerStats"] = $query->getResult();
 
         return $data;
     }
-
 }
