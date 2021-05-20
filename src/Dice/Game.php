@@ -51,7 +51,9 @@ class Game
 
         if (!isset($rounddices)) {
             $session->set("rounddices", $dicehand);
-        } elseif (isset($rounddices)) {
+        }
+
+        if (isset($rounddices)) {
             $merge = array_merge($rounddices, $dicehand);
             $session->set("rounddices", $merge);
         }

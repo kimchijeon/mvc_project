@@ -6,6 +6,7 @@ namespace App\Dice;
 
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
+
 use function App\Functions\arrayDiceNumbers;
 
 /**
@@ -21,7 +22,7 @@ class GameFinalResults
 
         $data = [
             "header" => "Let's play 21",
-            "message" => "Final results!",
+            "message" => "Round results!"
         ];
 
         $playertotal = $session->get("playertotal");
@@ -39,6 +40,7 @@ class GameFinalResults
 
     public function showFinalResults(Request $request): array
     {
+        $data = array();
         $session = $request->getSession();
 
         $playertotal = $session->get("playertotal");
@@ -61,6 +63,7 @@ class GameFinalResults
 
     public function showBettingResults(Request $request): array
     {
+        $data = array();
         $session = $request->getSession();
 
         $playercoins = $session->get("playercoins");
@@ -91,6 +94,7 @@ class GameFinalResults
 
     public function showScoreboard(Request $request): array
     {
+        $data = array();
         $session = $request->getSession();
 
         $win = $session->get("win");
@@ -121,6 +125,7 @@ class GameFinalResults
 
     public function printHistogram(Request $request): array
     {
+        $data = array();
         $session = $request->getSession();
 
         $saveddices = $session->get("saveddices") ?? [0];

@@ -14,7 +14,7 @@ class HighscoreController extends AbstractController
     /**
      * @Route("/game21/highscore", name="highscore")
      */
-    public function index(EntityManagerInterface $entityManager, Request $request): Response
+    public function index(EntityManagerInterface $entityManager): Response
     {
         $callable = new GameHighscore();
         $highscore = $callable->showHighscoreTable($entityManager);
@@ -39,7 +39,7 @@ class HighscoreController extends AbstractController
     /**
      * @Route("/game21/highscore/name/{name}", name="highscore_player")
      */
-    public function showPlayer(EntityManagerInterface $entityManager, Request $request, $name): Response
+    public function showPlayer(EntityManagerInterface $entityManager, $name): Response
     {
         $callable = new GameHighscore();
         $data = $callable->showPlayerStats($entityManager, $name);

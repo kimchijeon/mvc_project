@@ -73,8 +73,9 @@ class GamePrepare
 
         if (!isset($saveddices)) {
             $session->set("saveddices", $rounddices);
+        }
 
-        } elseif (isset($saveddices) && isset($rounddices)) {
+        if (isset($saveddices) && isset($rounddices)) {
             $merge = array_merge($saveddices, $rounddices);
             $session->set("saveddices", $merge);
         }
