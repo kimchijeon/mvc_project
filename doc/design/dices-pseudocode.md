@@ -21,13 +21,11 @@ Set variable `saveddices` to session variable `saveddices`.
 If `saveddices` is empty
 
 	Set `saveddices` to `rounddices`.
-	Then set `rounddices` to empty.
 
 If `saveddices` and `rounddices` are set
 
 	Merge `saveddices` and `rounddices`.
 	Set `saveddices` to the merge.
-	Then set `rounddices` to empty.
 
 ## Function to create an array for each dice number in saved dices
 Find the keys in `saveddices` which has the wanted `number` and save them in `findkeys`.
