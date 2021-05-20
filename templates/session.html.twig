@@ -10,5 +10,9 @@
 <p>You may <a href="{{ path('session-destroy') }}">destroy the session</a> if you like, good for dealing
 with trouble.</p>
 
-{{ dump(app.session.all)}}
+<div class="session-details">
+    {{ dump(app.session.all) }}
+</div>
+
+<p><img src="../public/img/purple-dice.png" width="200" alt="Two animated purple dice"></p>
 {% endblock %}

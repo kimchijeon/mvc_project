@@ -3,13 +3,24 @@
 {% block title %}Index{% endblock %}
 
 {% block content %}
-<h1>Welcome to this page!</h1>
+<h1>Welcome to Game 21!</h1>
 
-<p>This website was made for course <a href="https://dbwebb.se/kurser/mvc-v1">dbwebb-mvc</a> in April 2021 using Symfony.</p>
+<div class="index-bubble">
+    <div class="index-bubble-text">
+        <p>Play a game of 21 <br>against a bot!</p>
+        <p>Bet your coins and earn more!</p>
+        <p>Save your best scores <br>for everyone to see!</p>
+    </div>
+</div>
+
+<p>This web application was developed for course <a href="https://dbwebb.se/kurser/mvc-v1">dbwebb-mvc</a> in April/May 2021 using Symfony.</p>
 
 <h2>What would you like to do today?</h2>
-<ul>
-    <li><a href="{{ path('session') }}">Session Management</a></li>
-    <li><a href="{{ path('game21') }}">Play Game 21</a></li>
-</ul>
+<div class="main-button">
+    <a href="{{ path('game21') }}">Play Game 21</a>
+    <a href="{{ path('highscore') }}">Look at highscores</a>
+    <a href="{{ path('session') }}">Session Management</a>
+</div>
+
+<p><img src="../public/img/purple-dice.png" width="200" alt="Two animated purple dice"></p>
 {% endblock %}

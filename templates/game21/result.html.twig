@@ -5,10 +5,23 @@
 {% block content %}
 <h1>{{ header }}</h1>
 
-<p>{{ message }}</p>
+<h2>{{ message }}</h2>
 
-<p>Your total: <b>{{ getPlayerTotal }}</b></p>
-<p>Bot total: <b>{{ getBotTotal }}</b></p>
+<div class="total-container">
+    <div class="total-wrap">
+        <p>Your total</p>
+        <div class="total-bubble">
+            {{ getPlayerTotal }}
+        </div>
+    </div>
+
+    <div class="total-wrap">
+        <p>Bot total</p>
+        <div class="total-bubble">
+            {{ getBotTotal }}
+        </div>
+    </div>
+</div>
 
 <h2>{{ getResultMessage }}</h2>
 
@@ -28,9 +41,12 @@
 </div>
 
 <h2>Scoreboard</h2>
-<p>Total rounds: <b>{{ getWins + getLosses }}</b></p>
-<p>You have won {{ getWins }} times.</p>
-<p>Bot has won {{ getLosses }} times.</p>
+<p>Total rounds</p>
+<div class="total-bubble">
+    {{ getWins + getLosses }}
+</div>
+<p>You have won <b>{{ getWins }}</b> times.</p>
+<p>Bot has won <b>{{ getLosses }}</b> times.</p>
 
 <h2>Which numbers did you roll?</h2>
 
@@ -72,15 +88,16 @@
     </div>
 </div>
 
-<p>Total number of dices rolled: <b>{{ getDiceTotal }}</b></p>
+<p>Total number of dices rolled</p>
+<div class="total-bubble">
+    {{ getDiceTotal }}
+</div>
 
 <p>
     <button><a href="{{ path('game21') }}">Play another round</a></button>
 </p>
-<p>
-    <button><a href="{{ path('game21_restart') }}">Reset scoreboard</a></button>
-</p>
-<h2>End and save your highscore</h2>
+
+<h2>Save your highscore</h2>
 <p>
     <form method="post" action="{{ path('highscore_process') }}">
         <label>Enter username:</label>
@@ -91,8 +108,14 @@
         <input type="hidden" name="playercoins" value="{{ getPlayerCoins }}">
         <input type="hidden" name="botcoins" value="{{ getBotCoins }}">
         <input type="hidden" name="dicetotal" value="{{ getDiceTotal }}">
-        <input type="submit" name="submit" value="Save">
+        <br>
+        <input class="save-button" type="submit" name="submit" value="Save and end game">
     </form>
 </p>
 
+<p>
+    <button><a href="{{ path('game21_restart') }}">End game without saving</a></button>
+</p>
+
+<p><img src="../../public/img/purple-dice.png" width="200" alt="Two animated purple dice"></p>
 {% endblock %}

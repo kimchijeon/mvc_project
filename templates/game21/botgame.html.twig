@@ -14,8 +14,21 @@
     <div class="dice-{{ value }}"></div>
     {% endfor %}
 </div>
-<p>Your total: <b>{{ getPlayerTotal }}</b></p>
-<p>Average roll: <b>{{ averageRoundDices }}</b></p>
+
+<div class="total-container">
+    <div class="total-wrap">
+        <p>Your total</p>
+        <div class="total-bubble">
+            {{ getPlayerTotal }}
+        </div>
+    </div>
+    <div class="total-wrap">
+        <p>Average roll</p>
+        <div class="average-bubble">
+            <div class="average-text">{{ averageRoundDices }}</div>
+        </div>
+    </div>
+</div>
 
 <h2>Bet your coins</h2>
 <div class="bet">
@@ -35,12 +48,15 @@
 
 <p>
     <form method="post" action="{{ path('game21_bot_play') }}">
-        <label>Place your bets!</label>
+        <label>Place your bets:</label>
         <input type="number" name="bet" max="{{ getPlayerCoins / 2 }}" placeholder="Max 50% of your balance">
-        <input type="submit" name="submit" value="Let bot play">
+        <br>
+        <input class="play-button" type="submit" name="submit" value="Let bot play">
     </form>
 </p>
 <p>
-    <button><a href="{{ path('game21') }}">Restart</a></button>
+    <button><a href="{{ path('game21_restart') }}">Reset</a></button>
 </p>
+
+<p><img src="../../public/img/purple-dice.png" width="200" alt="Two animated purple dice"></p>
 {% endblock %}

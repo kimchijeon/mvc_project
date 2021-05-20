@@ -1,49 +1,220 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Sigmar+One&display=swap');
 
 body {
-    overflow-y: scroll;
-    width: 800px;
-    margin: 8px auto;
-    padding-left: 1em;
-    border-left: 1px solid #ccc;
+    margin-top: 1em;
+    margin-bottom: 2em;
     font-family: 'Quicksand', sans-serif;
-    background-color: rgb(236, 250, 255);
+    min-height: 40em;
+    min-width: 100em;
+    background-color: #f0b801;
+    overflow-y: scroll;
+}
+
+body::after {
+    content: "";
+    background: url("../img/pattern.png") repeat;
+    background-attachment: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -1;
+    opacity: 0.5;
+}
+
+main {
+    margin: auto;
+    max-width: 50em;
+    padding: 2em;
+    min-height: 30em;
+    border-radius: 10px;
+    border: 2px dashed #74558a;
+    background-color: #faf8f2;
+    box-shadow: 10px 10px #c29e29;
+    text-align: center;
+}
+
+a:hover {
+    color: black;
 }
 
 h1,
 h2 {
     font-family: 'Sigmar One', cursive;
+    text-align: center;
+    text-shadow: 3px 3px #c5c5c5;
+    margin: 0.5em;
 }
 
-main {
-    padding: 2em;
-    min-height: 40em;
-    background-color: rgb(245, 251, 255);
-    border-radius: 10px;
+h1 {
+    font-size: 3em;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+header h1 {
+    text-align: center;
+    font-size: 5em;
+    margin: 0.2em;
+}
+
+header h1 a {
+    color: #ffecac;
+    text-shadow: 5px 5px #806611;
+    text-decoration: none;
+}
+
+header h1 a:hover {
+    color: #ffecac;
 }
 
 nav {
-    padding: 1em;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 1.5em;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 20em;
+    border-radius: 5px;
+    font-family: 'Sigmar One', cursive;
+    font-size: 1.2em;
+}
+
+.main-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+nav a,
+.main-button a,
+form input[type=submit],
+button {
+    display: inline-block;
+    padding: 0.2em 1em;
+    border: 7px outset #74558a;
+    text-decoration: none;
+    border-radius: 5px;
+    background-color: rgb(147, 120, 167);
+    color:white;
+    margin-right: 10px;
+    min-width: 10em;
+}
+
+button a {
+    text-decoration: none;
+    font-family: 'Quicksand', sans-serif;
+    color: white;
+    font-size: 1.2em;
+}
+
+form input[type=submit] {
+    font-size: 1em;
+}
+
+.main-button a {
+    margin-right: unset;
+    font-family: 'Quicksand', sans-serif;
+    box-shadow: unset;
+    text-align: center;
+    max-width: 10em;
+    margin-bottom: 1em;
+}
+
+nav a:visited,
+.main-button a:visited,
+button a:visited {
+    color: white;
+}
+
+nav a:hover,
+.main-button a:hover,
+form input[type=submit]:hover,
+button:hover {
+    background-color: #74558a;
+    border: 7px solid #4d3b5a;
+    border-style: outset;
+}
+
+.index-bubble,
+.total-bubble,
+.average-bubble {
+    margin: auto;
+    border-radius: 50%;
+    max-width: 250px;
+    min-height: 250px;
+    background-color:rgb(147, 120, 167);
+    border: 4px dashed #4d3b5a;
+    margin-bottom: 2em;
+}
+
+.index-bubble-text {
+    margin-top: 3.5em;
+    color: white;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.total-container {
+    display: flex;
+    justify-content: center;
+}
+
+.total-wrap {
+    margin-right: 1em;
+}
+
+.total-bubble,
+.average-bubble {
+    max-width: 60px;
+    min-height: 60px;
+    border: 2px dashed #4d3b5a;
+    color: white;
+    font-family: 'Sigmar One', cursive;
+    font-size: 2em;
+    margin-bottom: 0.5em;
+}
+
+.average-bubble {
+    font-size: 1.3em;
+}
+
+.average-text {
+    margin-top: 0.5em;
+}
+.session-details {
+    text-align: left;
 }
 
 .histogram {
     padding: 20px;
-    background-color: grey;
+    background-color: #74558a;
     border-radius: 5px;
     width: 50%;
+    margin: auto;
 }
 
-.histogram-row {
+.histogram-row,
+.wins-table-row {
     background-color: white;
     border-bottom: 1px solid black;
     padding: 6px;
     padding-left: 15px;
     display: flex;
     font-size: 1.5em;
-    box-shadow: 5px 5px black;
+    box-shadow: 6px 6px #4d3b5a;
+}
+
+.wins-table-row p {
+    margin: unset;
 }
 
 .histogram-row .dot::after { content: "\25CF"; margin-left: 1px; }
+
 /**
 * Style a dice using UTF-8 characters.
 */
@@ -56,26 +227,36 @@ nav {
 
 .dice-utf8 {
     display: flex;
-    font-size: 2em;
+    font-size: 4em;
+    justify-content: center;
 }
 
+form input[type=submit] {
+    font-family: 'Quicksand', sans-serif;
+}
+
+.play-button,
+.save-button {
+    margin-top: 1em;
+}
 form input[type=number] {
-    width: 15em;
+    width: 13em;
 }
 
 table {
     border-collapse: collapse;
-    font-size: 0.9em;
     min-width: 500px;
     text-align: center;
+    margin: auto;
 }
 
 th {
     padding: 5px;
-    background-color: rgb(41, 41, 41);
+    background-color: #74558a;
     color: white;
     text-align: center;
     border-right: 1px solid white;
+    font-size: 1.1em;
 }
 
 td {
@@ -105,6 +286,7 @@ tr:hover {
 .bet {
     position: relative;
     display: flex;
+    justify-content: center;
 }
 
 .coin-bag,
@@ -117,21 +299,35 @@ tr:hover {
 .coin-bag p {
     position: absolute;
     top: 60%;
-    left: 3%;
+    left: 40%;
 }
 
 .bot-coin-bag p {
     position: absolute;
     top: 60%;
-    left: 21%;
+    left: 56%;
 }
 
 .player-coins {
     margin-right: 2em;
 }
 
+img {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-right: 2em;
+    margin-bottom: 2em;
+}
+
 footer {
-    margin-top: 1em;
-    border-top: 1px solid #ccc;
+    margin-top: 3em;
+    margin-left: 4em;
     text-align: center;
+    border-radius: 50px;
+    border: 1px dashed #74558a;
+    background-color: #faf8f2;
+    max-width: 15em;
+    box-shadow: 5px 5px #c29e29;
+    padding: 0.5em;
 }

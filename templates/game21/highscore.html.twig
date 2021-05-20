@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Game 21{% endblock %}
+{% block title %}Highscore | Game 21{% endblock %}
 
 {% block content %}
 <h1>Highscore</h1>
@@ -8,38 +8,44 @@
 <table class="highscore">
     <tr>
         <th>Rank</th>
+        <th>Player coins</th>
         <th>Wins</th>
         <th>Username</th>
-        <th>Player coins</th>
     </tr>
     {% for row in highscore %}
     <tr>
         <td></td>
+        <td>{{ row.playerCoin }}</td>
         <td>{{ row.win }}</td>
         <td><a href="{{ path('highscore_player', {'name': row.name}) }}">{{ row.name }}</a></td>
-        <td>{{ row.player_coin }}</td>
     </tr>
     {% endfor %}
 </table>
 
 <h2>Game stats of all time</h2>
 {% for row in getOverallStats %}
-    <p>Total rounds played: {{ row.roundtotal }}</p>
+    <p>Total rounds played</p>
+    <div class="total-bubble">
+        {{ row.roundtotal }}
+    </div>
 {% endfor %}
 {% for row in getOverallStats %}
-    <p>Total number of dice rolled: {{ row.dicetotal }}</p>
+    <p>Total number of dice rolled</p>
+    <div class="total-bubble">
+        {{ row.dicetotal }}
+    </div>
 {% endfor %}
 
 <div class="histogram">
-    <div class="histogram-row">Player wins:
+    <div class="wins-table-row">
         {% for row in getOverallStats %}
-            {{ row.wintotal }}
+           <p>Player wins: <b>{{ row.wintotal }}</b></p>
         {% endfor %}
     </div>
     
-    <div class="histogram-row">Bot wins: 
+    <div class="wins-table-row">
         {% for row in getOverallStats %}
-            {{ row.losstotal }}
+            <p>Bot wins: <b>{{ row.losstotal }}</b></p>
         {% endfor %}
     </div>
 </div>
@@ -47,4 +53,6 @@
 <p>
     <button><a href="{{ path('game21_restart') }}">Start new game</a></button>
 </p>
+
+<p><img src="../../public/img/purple-dice.png" width="200" alt="Two animated purple dice"></p>
 {% endblock %}

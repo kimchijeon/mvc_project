@@ -7,14 +7,18 @@
 
 <p>{{ message }}</p>
 
-<p>You rolled and got:</p>
+<h2>You rolled and got:</h2>
 <div class="dice-utf8">
     {% for value in lastRoll %}
     <div class="dice-{{ value }}"></div>
     {% endfor %}
 </div>
 
-<p>Current total: <b>{{ sumDice }}</b></p>
+<p>Current total:</p>
+
+<div class="total-bubble">
+    {{ sumDice }}
+</div>
 
 <p>{{ notice }} </p>
 <p>
@@ -29,6 +33,8 @@
     </form>
 </p>
 <p>
-    <button><a href="{{ path('game21') }}">Restart</a></button>
+    <button><a href="{{ path('game21_restart') }}">Reset</a></button>
 </p>
+
+<p><img src="../../public/img/purple-dice.png" width="200" alt="Two animated purple dice"></p>
 {% endblock %}

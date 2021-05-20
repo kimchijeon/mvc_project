@@ -9,10 +9,12 @@
 
     <body>
         <header>
+            <h1><a href="{{ path('index') }}">Game 21</a></h1>
             <nav>
-                <a href="{{ path('index') }}">Home</a> |
-                <a href="{{ path('session') }}">Session</a> |
-                <a href="{{ path('game21') }}">Game 21</a> |
+                <a href="{{ path('index') }}">Home</a>
+                <a href="{{ path('game21') }}">Game 21</a>
+                <a href="{{ path('highscore') }}">Highscore</a>
+                <a href="{{ path('session') }}">Session</a>
             </nav>
         </header>
 
@@ -21,7 +23,7 @@
         </main>
 
         <footer>
-            <p>Developed by Jenny Phan (<a href="https://github.com/kimchijeon/mvc_framework/tree/main/app">kimchijeon</a>) 2021</p>
+            <p>Developed by Jenny Phan (<a href="https://github.com/kimchijeon/mvc_project">kimchijeon</a>) 2021</p>
         </footer>
     </body>
 </html>
