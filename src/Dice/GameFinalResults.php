@@ -7,8 +7,6 @@ namespace App\Dice;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
 
-use function App\Functions\arrayDiceNumbers;
-
 /**
  * Class GameFinalResults as a controller class
  */
@@ -22,7 +20,9 @@ class GameFinalResults
 
         $data = [
             "header" => "Let's play 21",
-            "message" => "Round results!"
+            "message" => "Round results!",
+            "getPlayerTotal" => 0,
+            "getBotTotal" => 0,
         ];
 
         $playertotal = $session->get("playertotal");
@@ -40,7 +40,10 @@ class GameFinalResults
 
     public function showFinalResults(Request $request): array
     {
-        $data = array();
+        $data = [
+            "getResultMessage" => "No results",
+        ];
+
         $session = $request->getSession();
 
         $playertotal = $session->get("playertotal");
@@ -63,7 +66,11 @@ class GameFinalResults
 
     public function showBettingResults(Request $request): array
     {
-        $data = array();
+        $data = [
+            "getPlayerCoins" => 0,
+            "getBotCoins" => 0,
+        ];
+
         $session = $request->getSession();
 
         $playercoins = $session->get("playercoins");
@@ -94,7 +101,11 @@ class GameFinalResults
 
     public function showScoreboard(Request $request): array
     {
-        $data = array();
+        $data = [
+            "getWins" => 0,
+            "getLosses" => 0,
+        ];
+
         $session = $request->getSession();
 
         $win = $session->get("win");
@@ -123,19 +134,41 @@ class GameFinalResults
         return $data;
     }
 
+    public function arrayDiceNumbers(array $saveddices, int $number): array
+    {
+        $findkeys = array_keys($saveddices, $number);
+
+        $histogram = array();
+
+        foreach ($findkeys as $key) {
+            array_push($histogram, $saveddices[$key]);
+        }
+
+        return $histogram;
+    }
+
     public function printHistogram(Request $request): array
     {
-        $data = array();
+        $data = [
+            "getOnes" => 0,
+            "getTwos" => 0,
+            "getThrees" => 0,
+            "getFours" => 0,
+            "getFives" => 0,
+            "getSixes" => 0,
+            "getDiceTotal" => 0,
+        ];
+
         $session = $request->getSession();
 
         $saveddices = $session->get("saveddices") ?? [0];
 
-        $data["getOnes"] = arrayDiceNumbers($saveddices, 1);
-        $data["getTwos"] = arrayDiceNumbers($saveddices, 2);
-        $data["getThrees"] = arrayDiceNumbers($saveddices, 3);
-        $data["getFours"] = arrayDiceNumbers($saveddices, 4);
-        $data["getFives"] = arrayDiceNumbers($saveddices, 5);
-        $data["getSixes"] = arrayDiceNumbers($saveddices, 6);
+        $data["getOnes"] = $this->arrayDiceNumbers($saveddices, 1);
+        $data["getTwos"] = $this->arrayDiceNumbers($saveddices, 2);
+        $data["getThrees"] = $this->arrayDiceNumbers($saveddices, 3);
+        $data["getFours"] = $this->arrayDiceNumbers($saveddices, 4);
+        $data["getFives"] = $this->arrayDiceNumbers($saveddices, 5);
+        $data["getSixes"] = $this->arrayDiceNumbers($saveddices, 6);
 
         $data["getDiceTotal"] = count($data["getOnes"]) + count($data["getTwos"]) + count($data["getThrees"]) + count($data["getFours"]) + count($data["getFives"]) + count($data["getSixes"]);
 

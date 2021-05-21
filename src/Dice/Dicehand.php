@@ -26,15 +26,19 @@ class Dicehand
 
     public function prepare()
     {
-        for ($i = 0; $i <= $this->number; $i++) {
-            $this->dices[$i] = new Dice();
+        if (isset($this->number)) {
+            for ($i = 0; $i <= $this->number; $i++) {
+                $this->dices[$i] = new Dice();
+            }
         }
     }
 
     public function roll(): void
     {
-        for ($i = 0; $i <= $this->number; $i++) {
-            $this->dices[$i]->roll();
+        if (isset($this->number)) {
+            for ($i = 0; $i <= $this->number; $i++) {
+                $this->dices[$i]->roll();
+            }
         }
     }
 
@@ -42,8 +46,10 @@ class Dicehand
     {
         $res = "";
 
-        for ($i = 0; $i <= $this->number; $i++) {
-            $res .= $this->dices[$i]->getLastRoll() . ",";
+        if (isset($this->number)) {
+            for ($i = 0; $i <= $this->number; $i++) {
+                $res .= $this->dices[$i]->getLastRoll() . ",";
+            }
         }
 
         $resArray = array_map('intval', explode(",", rtrim($res, ',')));

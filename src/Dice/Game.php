@@ -85,6 +85,11 @@ class Game
         $data = [
             "header" => "Let's play 21",
             "message" => "It's the bot's turn to play. Who will win?",
+            "getRoundDices" => [0],
+            "averageRoundDices" => 0,
+            "getPlayerTotal" => 0,
+            "getPlayerCoins" => 0,
+            "getBotCoins" => 0,
         ];
 
         $playertotal = $session->get("playertotal");
@@ -104,12 +109,10 @@ class Game
         $rounddices = $session->get("rounddices");
         if (isset($rounddices)) {
             $data["getRoundDices"] = $rounddices;
+            $count = count($rounddices);
+            $average = round(array_sum($rounddices) / $count, 2);
+            $data["averageRoundDices"] = $average;
         }
-
-        $count = count($rounddices);
-        $average = round(array_sum($rounddices) / $count, 2);
-
-        $data["averageRoundDices"] = $average;
 
         return $data;
     }
