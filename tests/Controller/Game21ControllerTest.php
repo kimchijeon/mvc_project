@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * Test cases for the controller Game21.
@@ -28,7 +25,7 @@ class Game21ControllerTest extends WebTestCase
      * Index
      * @runInSeparateProcess
      */
-    public function testIndexResponse()
+    public function testGame21IndexResponse()
     {
         $client = static::createClient();
         $client->request('GET', '/game21');

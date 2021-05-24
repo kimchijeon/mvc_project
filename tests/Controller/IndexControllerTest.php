@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * Test cases for the controller Game21.
+ * Test cases for the controller Index.
  */
 class IndexControllerTest extends WebTestCase
 {
@@ -24,6 +24,5 @@ class IndexControllerTest extends WebTestCase
         $client->request('GET', '/');
 
         $this->assertResponseIsSuccessful();
-        //$this->assertSelectorTextContains('h1', 'Welcome to Game 21!');
     }
 }
