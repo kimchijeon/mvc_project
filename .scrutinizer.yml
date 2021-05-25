@@ -2,7 +2,7 @@ imports:
     - php
 
 filter:
-    excluded_paths: [vendor/*, test/*, build/coverage/_js/*]
+    excluded_paths: [vendor/*, tests/*, build/coverage/_js/*]
 
 build:
     nodes:
