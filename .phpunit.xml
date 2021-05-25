@@ -12,7 +12,6 @@
 
 	<coverage processUncoveredFiles="true">
 		<include>
-			<directory suffix=".php">config</directory>
 			<directory suffix=".php">src/Controller/</directory>
 			<directory suffix=".php">src/Dice/</directory>
 		</include>
