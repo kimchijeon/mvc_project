@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1622109847">
-  <project timestamp="1622109847">
+<coverage generated="1622119261">
+  <project timestamp="1622119261">
     <file name="C:\Users\jenny\dbwebb-kurser\mvc\me\proj\src\Controller\Game21Controller.php">
       <class name="App\Controller\Game21Controller" namespace="global">
         <metrics complexity="9" methods="9" coveredmethods="9" conditionals="0" coveredconditionals="0" statements="38" coveredstatements="38" elements="47" coveredelements="47"/>
